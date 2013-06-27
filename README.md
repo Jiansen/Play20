@@ -1,3 +1,14 @@
+# TAkka-Play 2.1
+
+This project is forked from the [original Play repository](https://github.com/playframework/Play20) on 27 June 2013
+
+In this project, Akka actors will be replaced by TAkka actors.
+
+There will be two phases of evolution
+- TAkka actor with untyped Play APIs
+- TAkka actor with typed Play APIs
+
+
 # Play 2.1 
 
 Play 2.1 is a high productivity Java and Scala Web application framework, integrating all components and API needed for modern Web application development. 
