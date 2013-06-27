@@ -9,6 +9,10 @@ There will be two phases of evolution
 - TAkka actor with typed Play APIs
 
 
+We follow the Play [Testing Method](http://www.playframework.com/documentation/2.1.1/BuildingFromSource) to validate the TAkka port.
+
+
+
 # Play 2.1 
 
 Play 2.1 is a high productivity Java and Scala Web application framework, integrating all components and API needed for modern Web application development. 
