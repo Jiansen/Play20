@@ -37,7 +37,7 @@ class ScalaAkkaSpec extends Specification {
 
     "actor scheduler" in {
       running(FakeApplication()) {
-        val testActor = Akka.system.actorOf(Props[MyActor], name = "testActor")
+        val testActor = Akka.system.actorOf(Props[MyActor], name = "myactor")
         import scala.concurrent.ExecutionContext.Implicits.global
         //#play-akka-actor-schedule-repeat
         import play.api.libs.concurrent.Execution.Implicits._

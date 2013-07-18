@@ -10,8 +10,8 @@ import play.api.libs.iteratee._
 import play.api.libs.iteratee.Input._
 import play.api.libs.concurrent._
 
-import akka.actor._
-import akka.actor.Actor._
+import takka.actor._
+import takka.actor.Actor._
 import akka.routing._
 import akka.pattern.Patterns.ask
 import scala.concurrent.duration._

@@ -1,6 +1,6 @@
 package play.core.j
 
-import akka.actor.{ Actor, ActorSystem, Props }
+import takka.actor.{ TypedActor, ActorSystem, Props }
 import play.api.Logger
 import play.core.Invoker
 import play.mvc.Http
@@ -14,7 +14,7 @@ import scala.concurrent.ExecutionContext
  * The ExecutionContext preserves the execution behaviour of F.Promise from Play 2.1.
  */
 class OrderedExecutionContext(actorSystem: ActorSystem, size: Int) extends ExecutionContext {
-  private val actors = Array.fill(size)(actorSystem.actorOf(Props[OrderedExecutionContext.RunActor]))
+  private val actors = Array.fill(size)(actorSystem.actorOf(Props[Runnable, OrderedExecutionContext.RunActor]))
 
   def execute(runnable: Runnable) = {
     val httpContext = Http.Context.current.get()
@@ -30,8 +30,8 @@ object OrderedExecutionContext {
   /**
    * Used by the OrderedExecutionContext to run work in an actor.
    */
-  class RunActor extends Actor {
-    def receive = {
+  class RunActor extends TypedActor[Runnable] {
+    def typedReceive = {
       case runnable: Runnable => runnable.run()
     }
   }

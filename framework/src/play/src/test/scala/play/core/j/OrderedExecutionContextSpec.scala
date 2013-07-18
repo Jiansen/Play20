@@ -1,6 +1,6 @@
 package play.core.j
 
-import akka.actor.ActorSystem
+import takka.actor.ActorSystem
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit.SECONDS
 import java.util.concurrent.atomic.AtomicInteger

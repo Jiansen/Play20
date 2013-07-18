@@ -1,6 +1,6 @@
 package play.core
 
-import akka.actor._
+import takka.actor._
 
 import com.typesafe.config._
 import play.api.{ Logger, Play }

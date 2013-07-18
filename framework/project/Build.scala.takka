@@ -25,7 +25,8 @@ object BuildSettings {
   val previousVersion = "2.1.0"
   val buildScalaVersion = propOr("scala.version", "2.10.0")
   // TODO - Try to compute this from SBT...
-  val buildScalaVersionForSbt = propOr("play.sbt.scala.version", "2.9.2")
+//  val buildScalaVersionForSbt = propOr("play.sbt.scala.version", "2.9.2")
+  val buildScalaVersionForSbt = propOr("play.sbt.scala.version", "2.10.0")
   val buildSbtVersion = propOr("play.sbt.version", "0.12.3")
   val buildSbtMajorVersion = "0.12"
   val buildSbtVersionBinaryCompatible = "0.12"
@@ -212,8 +213,12 @@ object PlayBuild extends Build {
       sbtPlugin := true,
       publishMavenStyle := false,
       libraryDependencies := sbtDependencies,
-      libraryDependencies += "com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.1.1" extra("sbtVersion" -> buildSbtVersionBinaryCompatible, "scalaVersion" -> buildScalaVersionForSbt),
-      libraryDependencies += "com.github.mpeltonen" % "sbt-idea" % "1.4.0" extra("sbtVersion" -> buildSbtVersionBinaryCompatible, "scalaVersion" -> buildScalaVersionForSbt),
+//      libraryDependencies += "com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.2.0" extra("sbtVersion" -> buildSbtVersionBinaryCompatible, "scalaVersion" -> buildScalaVersionForSbt),
+//      libraryDependencies += "com.github.mpeltonen" % "sbt-idea" % "1.4.0" extra("sbtVersion" -> buildSbtVersionBinaryCompatible, "scalaVersion" -> buildScalaVersionForSbt),
+
+//      libraryDependencies += "com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.2.0",
+//      libraryDependencies += "com.github.mpeltonen" % "sbt-idea" % "1.4.0",
+
       libraryDependencies += "org.specs2" %% "specs2" % "1.12.3" % "test" exclude("javax.transaction", "jta"),
       libraryDependencies += "org.scala-sbt" % "sbt" % buildSbtVersion % "provided",
       publishTo := Some(publishingIvyRepository)

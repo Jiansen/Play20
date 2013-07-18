@@ -205,7 +205,7 @@ package scalaguide.http.scalaactionscomposition {
       "Wrapping authenticated request" in {
 
         //#authenticated-request
-        case class AuthenticatedRequest( 
+        case class AuthenticatedRequest(grep 
           user: User, private val request: Request[AnyContent]) extends WrappedRequest(request)
 
         def Authenticated(f: AuthenticatedRequest => Result) = {
