@@ -2,7 +2,7 @@
 logLevel := Level.Warn
 
 // The Typesafe repository
-resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
+resolvers += Resolver.file("Local Repository", file("/home/jiansen/TAkka-Play20/repository/local"))(Resolver.ivyStylePatterns)
 
-// Use the Play sbt plugin for Play projects
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % Option(System.getProperty("play.version")).getOrElse("2.0"))
+addSbtPlugin("play" % "sbt-plugin" % Option(System.getProperty("play.version")).getOrElse("2.2-SNAPSHOT"))
+//addSbtPlugin("play" % "sbt-plugin" % "2.2-SNAPSHOT")
