@@ -12,6 +12,18 @@ There will be two phases of evolution
 We follow the Play [Testing Method](http://www.playframework.com/documentation/2.1.1/BuildingFromSource) to validate the TAkka port.
 
 
+# Addional Test
+sample/scala/framework_benchmarks is modified from the [Play-Scala](https://github.com/TechEmpower/FrameworkBenchmarks/tree/master/play-scala) example in the [TechEmpower Web Framework Benchmarks](https://github.com/TechEmpower/FrameworkBenchmarks).
+
+We tested the JSON benchmark using 
+
+ab -kc 20 -t 60 http://localhost:9000/json
+
+99% of 50000 requests finishes within 4ms using the Akka-Play or the TAkka-Play.
+
+
+
+
 
 # Play 2.1 
 
