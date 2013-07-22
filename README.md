@@ -4,7 +4,7 @@ This project is forked from the [original Play repository](https://github.com/pl
 
 In this project, Akka actors in the library is replaced by TAkka actors.
 
-All changes are listed at [here](https://github.com/Jiansen/Play20/blob/master/changes.md).
+All changes in the TAKKA-PLAY branch are listed at [here](https://github.com/Jiansen/Play20/blob/master/changes.md).
 
 
 We follow the Play [Testing Method](http://www.playframework.com/documentation/2.1.1/BuildingFromSource) to validate the TAkka port.
