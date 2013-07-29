@@ -1,4 +1,3 @@
-
 # Set up AWS Auto Scale Group
 
 ## aws console 
