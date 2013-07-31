@@ -1,6 +1,13 @@
 # TAkka Play TEST
 
-## Throughput of local service (run on AWS)
+## Throughput Summary
+
+
+
+
+## Detailed Results
+
+### Throughput of local service (run on AWS)
 
 $ ab -kc 20 -t 60 http://127.0.0.1:9000/json
 This is ApacheBench, Version 2.3 <$Revision: 655654 $>
@@ -62,7 +69,7 @@ Percentage of the requests served within a certain time (ms)
 
 
 
-## Connection Speed (run on desktop at IF)
+### Connection Speed (run on desktop at IF)
 
 $ ping -c4 176.34.229.204
 PING 176.34.229.204 (176.34.229.204) 56(84) bytes of data.
