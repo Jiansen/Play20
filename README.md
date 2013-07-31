@@ -13,7 +13,7 @@ We follow the Play [Testing Method](http://www.playframework.com/documentation/2
 # Addional Test
 sample/scala/framework_benchmarks is modified from the [Play-Scala](https://github.com/TechEmpower/FrameworkBenchmarks/tree/master/play-scala) example in the [TechEmpower Web Framework Benchmarks](https://github.com/TechEmpower/FrameworkBenchmarks).
 
-We tested the JSON benchmark using [Amazon EC2 Auto Scaling](https://github.com/Jiansen/TAkka-Play/blob/master/AWS_Auto_Scale_Group.md), and record the result at [here](https://github.com/Jiansen/TAkka-Play/blob/master/BenchMark).
+We tested the JSON benchmark using [Amazon EC2 Auto Scaling](https://github.com/Jiansen/TAkka-Play/blob/master/AWS_Auto_Scale_Group.md), and record the result at [here](https://github.com/Jiansen/TAkka-Play/blob/master/BenchMark.md).
 
 
 
