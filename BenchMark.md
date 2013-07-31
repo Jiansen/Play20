@@ -1,8 +1,43 @@
 # TAkka Play TEST
 
+### Connection Speed from Informatic Forum to Amazon EC2 instance
+
+$ ping -c4 176.34.229.204
+PING 176.34.229.204 (176.34.229.204) 56(84) bytes of data.
+64 bytes from 176.34.229.204: icmp_req=1 ttl=46 time=22.8 ms
+64 bytes from 176.34.229.204: icmp_req=2 ttl=46 time=22.6 ms
+64 bytes from 176.34.229.204: icmp_req=3 ttl=46 time=23.4 ms
+64 bytes from 176.34.229.204: icmp_req=4 ttl=46 time=35.1 ms
+
+--- 176.34.229.204 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 22.661/26.008/35.124/5.272 ms
+
+### Connection Speed from Informatic Forum to Amazon Load Balancer
+
+Unknown due to Amazon Security Policy.
+
+
 ## Throughput Summary
 
+### command 
+$ ab -kc 20 -t 60 http://IP:9000/json
 
+<table>
+    <tr>
+        <td>TEST                   </td><td>AKKA Requests/sec </td><td>TAKKA Requests/sec </td><td>99% of the requests served within ms (Akka) </td><td>99% of the requests served within ms (TAkka)  </td>
+        <td>Local (Desktop)        </td><td>AKKA</td><td>TAKKA</td>       
+        <td>Local (EC2 T1 Micro)   </td><td>AKKA</td><td>TAKKA</td>        
+        <td>1 EC2 instance         </td><td>AKKA</td><td>TAKKA</td>
+        <td>2 EC2 instance         </td><td>AKKA</td><td>TAKKA</td>
+        <td>4 EC2 instance         </td><td>AKKA</td><td>TAKKA</td>
+        <td>8 EC2 instance         </td><td>AKKA</td><td>TAKKA</td>
+        <td>16 EC2 instance        </td><td>AKKA</td><td>TAKKA</td>
+        <td>32 EC2 instance        </td><td>AKKA</td><td>TAKKA</td>
+        <td>64 EC2 instance        </td><td>AKKA</td><td>TAKKA</td>
+        <td>128 EC2 instance       </td><td>AKKA</td><td>TAKKA</td>
+    </tr>
+</table>
 
 
 ## Detailed Results
@@ -69,18 +104,7 @@ Percentage of the requests served within a certain time (ms)
 
 
 
-### Connection Speed (run on desktop at IF)
 
-$ ping -c4 176.34.229.204
-PING 176.34.229.204 (176.34.229.204) 56(84) bytes of data.
-64 bytes from 176.34.229.204: icmp_req=1 ttl=46 time=22.8 ms
-64 bytes from 176.34.229.204: icmp_req=2 ttl=46 time=22.6 ms
-64 bytes from 176.34.229.204: icmp_req=3 ttl=46 time=23.4 ms
-64 bytes from 176.34.229.204: icmp_req=4 ttl=46 time=35.1 ms
-
---- 176.34.229.204 ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3004ms
-rtt min/avg/max/mdev = 22.661/26.008/35.124/5.272 ms
 
 
 ## Throughput of AWS instance (run on desktop at IF)
