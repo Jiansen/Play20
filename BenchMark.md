@@ -2,6 +2,7 @@
 
 ### Connection Speed from Informatic Forum to Amazon EC2 instance
 
+<pre><code>
 $ ping -c4 176.34.229.204
 PING 176.34.229.204 (176.34.229.204) 56(84) bytes of data.
 64 bytes from 176.34.229.204: icmp_req=1 ttl=46 time=22.8 ms
@@ -12,6 +13,8 @@ PING 176.34.229.204 (176.34.229.204) 56(84) bytes of data.
 --- 176.34.229.204 ping statistics ---
 4 packets transmitted, 4 received, 0% packet loss, time 3004ms
 rtt min/avg/max/mdev = 22.661/26.008/35.124/5.272 ms
+</code></pre>
+
 
 ### Connection Speed from Informatic Forum to Amazon Load Balancer
 
