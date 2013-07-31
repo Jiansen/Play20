@@ -23,6 +23,9 @@ Unknown due to Amazon Security Policy.
 ### command 
 $ ab -kc 20 -t 60 http://IP:9000/json
 
+
+### result
+
 <table>
     <tr>
         <td>TEST                   </td><td>AKKA Requests/sec </td><td>TAKKA Requests/sec </td><td>99% of the requests served within ms (Akka) </td><td>99% of the requests served within ms (TAkka)  </td>
@@ -62,7 +65,9 @@ $ ab -kc 20 -t 60 http://IP:9000/json
 
 ## Detailed Results
 
-### Throughput of local service (run on AWS)
+### Local (Desktop)
+
+#### Akkka
 
 $ ab -kc 20 -t 60 http://127.0.0.1:9000/json
 This is ApacheBench, Version 2.3 <$Revision: 655654 $>
@@ -122,12 +127,15 @@ Percentage of the requests served within a certain time (ms)
  100%     28 (longest request)
 
 
+### TAkka
 
 
 
 
+## Local (EC2 T1 Micro)
 
-## Throughput of AWS instance (run on desktop at IF)
+### Akka
+
 $ ab -kc 20 -t 60 http://176.34.229.204:9000/json
 This is ApacheBench, Version 2.3 <$Revision: 655654 $>
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
@@ -184,4 +192,53 @@ Percentage of the requests served within a certain time (ms)
   98%     25
   99%     26
  100%     60 (longest request)
+
+### TAkka
+
+
+## 1 EC2 instance
+
+### Akka
+
+### TAkka
+
+
+## 4 EC2 instance
+
+### Akka
+
+### TAkka
+
+## 8 EC2 instance
+
+### Akka
+
+### TAkka
+
+## 16 EC2 instance
+
+### Akka
+
+### TAkka
+
+## 32 EC2 instance
+
+### Akka
+
+### TAkka
+
+## 64 EC2 instance
+
+### Akka
+
+### TAkka
+
+## 128 EC2 instance
+
+### Akka
+
+### TAkka
+
+
+
 
