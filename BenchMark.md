@@ -26,15 +26,35 @@ $ ab -kc 20 -t 60 http://IP:9000/json
 <table>
     <tr>
         <td>TEST                   </td><td>AKKA Requests/sec </td><td>TAKKA Requests/sec </td><td>99% of the requests served within ms (Akka) </td><td>99% of the requests served within ms (TAkka)  </td>
+    <tr>
+    </tr>        
         <td>Local (Desktop)        </td><td>AKKA</td><td>TAKKA</td>       
+    <tr>
+    </tr>        
         <td>Local (EC2 T1 Micro)   </td><td>AKKA</td><td>TAKKA</td>        
+    <tr>
+    </tr>        
         <td>1 EC2 instance         </td><td>AKKA</td><td>TAKKA</td>
+    <tr>
+    </tr>        
         <td>2 EC2 instance         </td><td>AKKA</td><td>TAKKA</td>
+    <tr>
+    </tr>        
         <td>4 EC2 instance         </td><td>AKKA</td><td>TAKKA</td>
+    <tr>
+    </tr>        
         <td>8 EC2 instance         </td><td>AKKA</td><td>TAKKA</td>
+    <tr>
+    </tr>        
         <td>16 EC2 instance        </td><td>AKKA</td><td>TAKKA</td>
+    <tr>
+    </tr>        
         <td>32 EC2 instance        </td><td>AKKA</td><td>TAKKA</td>
+    <tr>
+    </tr>        
         <td>64 EC2 instance        </td><td>AKKA</td><td>TAKKA</td>
+    <tr>
+    </tr>
         <td>128 EC2 instance       </td><td>AKKA</td><td>TAKKA</td>
     </tr>
 </table>
