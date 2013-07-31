@@ -71,7 +71,7 @@ $ ab -kc 20 -t 60 http://IP:9000/json
 ### Local (Desktop)
 
 #### Akkka
-
+<pre><code>
 $ ab -kc 20 -t 60 http://127.0.0.1:9000/json
 This is ApacheBench, Version 2.3 <$Revision: 655654 $>
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
@@ -128,17 +128,17 @@ Percentage of the requests served within a certain time (ms)
   98%     12
   99%     13
  100%     28 (longest request)
-
+</code></pre>
 
 ### TAkka
 
-
-
+<pre><code>
+</code></pre>
 
 ## Local (EC2 T1 Micro)
 
 ### Akka
-
+<pre><code>
 $ ab -kc 20 -t 60 http://176.34.229.204:9000/json
 This is ApacheBench, Version 2.3 <$Revision: 655654 $>
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
@@ -195,52 +195,86 @@ Percentage of the requests served within a certain time (ms)
   98%     25
   99%     26
  100%     60 (longest request)
+</code></pre>
+
+
 
 ### TAkka
+
+<pre><code>
+</code></pre>
 
 
 ## 1 EC2 instance
 
 ### Akka
+<pre><code>
+</code></pre>
 
 ### TAkka
 
+<pre><code>
+</code></pre>
 
 ## 4 EC2 instance
 
 ### Akka
+<pre><code>
+</code></pre>
 
 ### TAkka
+<pre><code>
+</code></pre>
 
 ## 8 EC2 instance
 
 ### Akka
+<pre><code>
+</code></pre>
 
 ### TAkka
+<pre><code>
+</code></pre>
 
 ## 16 EC2 instance
 
 ### Akka
+<pre><code>
+</code></pre>
 
 ### TAkka
+<pre><code>
+</code></pre>
 
 ## 32 EC2 instance
 
 ### Akka
+<pre><code>
+</code></pre>
 
 ### TAkka
+<pre><code>
+</code></pre>
 
 ## 64 EC2 instance
 
 ### Akka
+<pre><code>
+</code></pre>
 
 ### TAkka
+<pre><code>
+</code></pre>
 
 ## 128 EC2 instance
 
 ### Akka
+<pre><code>
+</code></pre>
 
 ### TAkka
+<pre><code>
+</code></pre>
 
 
 
