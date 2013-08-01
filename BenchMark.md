@@ -24,7 +24,7 @@ Unknown due to Amazon Security Policy.
 ## Throughput Summary
 
 ### command 
-$ ab -kc 20 -t 60 http://IP:9000/json
+$ ab -kc 20 -t 120 http://IP:9000/json
 
 
 ### result
@@ -209,6 +209,7 @@ Percentage of the requests served within a certain time (ms)
 
 ### Akka
 <pre><code>
+
 </code></pre>
 
 ### TAkka
@@ -220,6 +221,64 @@ Percentage of the requests served within a certain time (ms)
 
 ### Akka
 <pre><code>
+$ ab -kc 20 -t 120 http://akkaplay-488630556.eu-west-1.elb.amazonaws.com:9000/json
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking akkaplay-488630556.eu-west-1.elb.amazonaws.com (be patient)
+Completed 5000 requests
+Completed 10000 requests
+Completed 15000 requests
+Completed 20000 requests
+Completed 25000 requests
+Completed 30000 requests
+Completed 35000 requests
+Completed 40000 requests
+Completed 45000 requests
+Completed 50000 requests
+Finished 50000 requests
+
+
+Server Software:        
+Server Hostname:        akkaplay-488630556.eu-west-1.elb.amazonaws.com
+Server Port:            9000
+
+Document Path:          /json
+Document Length:        26 bytes
+
+Concurrency Level:      20
+Time taken for tests:   73.050 seconds
+Complete requests:      50000
+Failed requests:        9
+   (Connect: 0, Receive: 0, Length: 9, Exceptions: 0)
+Write errors:           0
+Keep-Alive requests:    49991
+Total transferred:      6798776 bytes
+HTML transferred:       1299766 bytes
+Requests per second:    684.46 [#/sec] (mean)
+Time per request:       29.220 [ms] (mean)
+Time per request:       1.461 [ms] (mean, across all concurrent requests)
+Transfer rate:          90.89 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.5      0      23
+Processing:     9   29   7.7     26     174
+Waiting:        0   29   7.7     26     174
+Total:          9   29   7.8     26     174
+
+Percentage of the requests served within a certain time (ms)
+  50%     26
+  66%     28
+  75%     30
+  80%     33
+  90%     41
+  95%     46
+  98%     51
+  99%     58
+ 100%    174 (longest request)
+
 </code></pre>
 
 ### TAkka
@@ -230,6 +289,64 @@ Percentage of the requests served within a certain time (ms)
 
 ### Akka
 <pre><code>
+$ ab -kc 20 -t 120 http://akkaplay-488630556.eu-west-1.elb.amazonaws.com:9000/json
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking akkaplay-488630556.eu-west-1.elb.amazonaws.com (be patient)
+Completed 5000 requests
+Completed 10000 requests
+Completed 15000 requests
+Completed 20000 requests
+Completed 25000 requests
+Completed 30000 requests
+Completed 35000 requests
+Completed 40000 requests
+Completed 45000 requests
+Completed 50000 requests
+Finished 50000 requests
+
+
+Server Software:        
+Server Hostname:        akkaplay-488630556.eu-west-1.elb.amazonaws.com
+Server Port:            9000
+
+Document Path:          /json
+Document Length:        26 bytes
+
+Concurrency Level:      20
+Time taken for tests:   65.069 seconds
+Complete requests:      50000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    50000
+Total transferred:      6800000 bytes
+HTML transferred:       1300000 bytes
+Requests per second:    768.41 [#/sec] (mean)
+Time per request:       26.028 [ms] (mean)
+Time per request:       1.301 [ms] (mean, across all concurrent requests)
+Transfer rate:          102.05 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.5      0      24
+Processing:    23   26   5.1     24      76
+Waiting:       23   26   5.1     24      76
+Total:         23   26   5.2     24      83
+
+Percentage of the requests served within a certain time (ms)
+  50%     24
+  66%     25
+  75%     26
+  80%     26
+  90%     29
+  95%     39
+  98%     46
+  99%     49
+ 100%     83 (longest request)
+
+
 </code></pre>
 
 ### TAkka
