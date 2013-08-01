@@ -24,14 +24,21 @@ Unknown due to Amazon Security Policy.
 ## Throughput Summary
 
 ### command 
-$ ab -kc 20 -t 120 http://IP:9000/json
+$ siege -b -c100 -t5m IP:9000/json
+
+$ siege -b -c100 -t5m IP:8888/json
+
+
+NOTES: 
+1. ApacheBenchmar and others are not appropriate because DNS need to be resolved each time.
+2. The benchmark should be run for a few minutes so that ELB will increase the number of instances.
 
 
 ### result
 
 <table>
     <tr>
-        <td>TEST                   </td><td>AKKA Requests/sec </td><td>TAKKA Requests/sec </td><td>99% of the requests served within ms (Akka) </td><td>99% of the requests served within ms (TAkka)  </td>
+        <td>TEST                   </td><td>AKKA Play trans/sec </td><td>TAKKA Play trans/sec </td>td>AKKA Socko trans/sec </td><td>TAKKA Socko trans/sec </td>
     <tr>
     </tr>        
         <td>Local (Desktop)        </td><td>AKKA</td><td>TAKKA</td>       
@@ -57,12 +64,6 @@ $ ab -kc 20 -t 120 http://IP:9000/json
     </tr>        
         <td>32 EC2 instance        </td><td>AKKA</td><td>TAKKA</td>
     <tr>
-    </tr>        
-        <td>64 EC2 instance        </td><td>AKKA</td><td>TAKKA</td>
-    <tr>
-    </tr>
-        <td>128 EC2 instance       </td><td>AKKA</td><td>TAKKA</td>
-    </tr>
 </table>
 
 
@@ -72,62 +73,6 @@ $ ab -kc 20 -t 120 http://IP:9000/json
 
 #### Akkka
 <pre><code>
-$ ab -kc 20 -t 60 http://127.0.0.1:9000/json
-This is ApacheBench, Version 2.3 <$Revision: 655654 $>
-Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
-Licensed to The Apache Software Foundation, http://www.apache.org/
-
-Benchmarking 127.0.0.1 (be patient)
-Completed 5000 requests
-Completed 10000 requests
-Completed 15000 requests
-Completed 20000 requests
-Completed 25000 requests
-Completed 30000 requests
-Completed 35000 requests
-Completed 40000 requests
-Completed 45000 requests
-Completed 50000 requests
-Finished 50000 requests
-
-
-Server Software:        
-Server Hostname:        127.0.0.1
-Server Port:            9000
-
-Document Path:          /json
-Document Length:        26 bytes
-
-Concurrency Level:      20
-Time taken for tests:   19.749 seconds
-Complete requests:      50000
-Failed requests:        0
-Write errors:           0
-Keep-Alive requests:    50000
-Total transferred:      6800000 bytes
-HTML transferred:       1300000 bytes
-Requests per second:    2531.80 [#/sec] (mean)
-Time per request:       7.900 [ms] (mean)
-Time per request:       0.395 [ms] (mean, across all concurrent requests)
-Transfer rate:          336.25 [Kbytes/sec] received
-
-Connection Times (ms)
-              min  mean[+/-sd] median   max
-Connect:        0    0   0.1      0       4
-Processing:     2    8   1.3      8      28
-Waiting:        0    8   1.3      8      28
-Total:          2    8   1.3      8      28
-
-Percentage of the requests served within a certain time (ms)
-  50%      8
-  66%      8
-  75%      8
-  80%      9
-  90%      9
-  95%     10
-  98%     12
-  99%     13
- 100%     28 (longest request)
 </code></pre>
 
 ### TAkka
@@ -139,62 +84,6 @@ Percentage of the requests served within a certain time (ms)
 
 ### Akka
 <pre><code>
-$ ab -kc 20 -t 60 http://176.34.229.204:9000/json
-This is ApacheBench, Version 2.3 <$Revision: 655654 $>
-Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
-Licensed to The Apache Software Foundation, http://www.apache.org/
-
-Benchmarking 176.34.229.204 (be patient)
-Completed 5000 requests
-Completed 10000 requests
-Completed 15000 requests
-Completed 20000 requests
-Completed 25000 requests
-Completed 30000 requests
-Completed 35000 requests
-Completed 40000 requests
-Completed 45000 requests
-Completed 50000 requests
-Finished 50000 requests
-
-
-Server Software:        
-Server Hostname:        176.34.229.204
-Server Port:            9000
-
-Document Path:          /json
-Document Length:        26 bytes
-
-Concurrency Level:      20
-Time taken for tests:   57.986 seconds
-Complete requests:      50000
-Failed requests:        0
-Write errors:           0
-Keep-Alive requests:    50000
-Total transferred:      6800000 bytes
-HTML transferred:       1300000 bytes
-Requests per second:    862.28 [#/sec] (mean)
-Time per request:       23.194 [ms] (mean)
-Time per request:       1.160 [ms] (mean, across all concurrent requests)
-Transfer rate:          114.52 [Kbytes/sec] received
-
-Connection Times (ms)
-              min  mean[+/-sd] median   max
-Connect:        0    0   0.5      0      23
-Processing:    22   23   1.1     23      50
-Waiting:       22   23   1.1     23      50
-Total:         22   23   1.3     23      60
-
-Percentage of the requests served within a certain time (ms)
-  50%     23
-  66%     23
-  75%     23
-  80%     23
-  90%     24
-  95%     24
-  98%     25
-  99%     26
- 100%     60 (longest request)
 </code></pre>
 
 
@@ -221,63 +110,29 @@ Percentage of the requests served within a certain time (ms)
 
 ### Akka
 <pre><code>
-$ ab -kc 20 -t 120 http://akkaplay-488630556.eu-west-1.elb.amazonaws.com:9000/json
-This is ApacheBench, Version 2.3 <$Revision: 655654 $>
-Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
-Licensed to The Apache Software Foundation, http://www.apache.org/
 
-Benchmarking akkaplay-488630556.eu-west-1.elb.amazonaws.com (be patient)
-Completed 5000 requests
-Completed 10000 requests
-Completed 15000 requests
-Completed 20000 requests
-Completed 25000 requests
-Completed 30000 requests
-Completed 35000 requests
-Completed 40000 requests
-Completed 45000 requests
-Completed 50000 requests
-Finished 50000 requests
-
-
-Server Software:        
-Server Hostname:        akkaplay-488630556.eu-west-1.elb.amazonaws.com
-Server Port:            9000
-
-Document Path:          /json
-Document Length:        26 bytes
-
-Concurrency Level:      20
-Time taken for tests:   73.050 seconds
-Complete requests:      50000
-Failed requests:        9
-   (Connect: 0, Receive: 0, Length: 9, Exceptions: 0)
-Write errors:           0
-Keep-Alive requests:    49991
-Total transferred:      6798776 bytes
-HTML transferred:       1299766 bytes
-Requests per second:    684.46 [#/sec] (mean)
-Time per request:       29.220 [ms] (mean)
-Time per request:       1.461 [ms] (mean, across all concurrent requests)
-Transfer rate:          90.89 [Kbytes/sec] received
-
-Connection Times (ms)
-              min  mean[+/-sd] median   max
-Connect:        0    0   0.5      0      23
-Processing:     9   29   7.7     26     174
-Waiting:        0   29   7.7     26     174
-Total:          9   29   7.8     26     174
-
-Percentage of the requests served within a certain time (ms)
-  50%     26
-  66%     28
-  75%     30
-  80%     33
-  90%     41
-  95%     46
-  98%     51
-  99%     58
- 100%    174 (longest request)
+$ siege -b -c100 -t3m AkkaPlay-488630556.eu-west-1.elb.amazonaws.com:9000/json** SIEGE 2.70
+** Preparing 100 concurrent users for battle.
+The server is now under siege...
+Lifting the server siege...      done.
+Transactions:		      109296 hits
+Availability:		      100.00 %
+Elapsed time:		      179.85 secs
+Data transferred:	        2.71 MB
+Response time:		        0.16 secs
+Transaction rate:	      607.71 trans/sec
+Throughput:		        0.02 MB/sec
+Concurrency:		       99.83
+Successful transactions:      109296
+Failed transactions:	           0
+Longest transaction:	        5.13
+Shortest transaction:	        0.04
+ 
+FILE: /var/log/siege.log
+You can disable this annoying message by editing
+the .siegerc file in your home directory; change
+the directive 'show-logfile' to false.
+[error] unable to create log file: Permission denied
 
 </code></pre>
 
@@ -289,62 +144,23 @@ Percentage of the requests served within a certain time (ms)
 
 ### Akka
 <pre><code>
-$ ab -kc 20 -t 120 http://akkaplay-488630556.eu-west-1.elb.amazonaws.com:9000/json
-This is ApacheBench, Version 2.3 <$Revision: 655654 $>
-Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
-Licensed to The Apache Software Foundation, http://www.apache.org/
-
-Benchmarking akkaplay-488630556.eu-west-1.elb.amazonaws.com (be patient)
-Completed 5000 requests
-Completed 10000 requests
-Completed 15000 requests
-Completed 20000 requests
-Completed 25000 requests
-Completed 30000 requests
-Completed 35000 requests
-Completed 40000 requests
-Completed 45000 requests
-Completed 50000 requests
-Finished 50000 requests
-
-
-Server Software:        
-Server Hostname:        akkaplay-488630556.eu-west-1.elb.amazonaws.com
-Server Port:            9000
-
-Document Path:          /json
-Document Length:        26 bytes
-
-Concurrency Level:      20
-Time taken for tests:   65.069 seconds
-Complete requests:      50000
-Failed requests:        0
-Write errors:           0
-Keep-Alive requests:    50000
-Total transferred:      6800000 bytes
-HTML transferred:       1300000 bytes
-Requests per second:    768.41 [#/sec] (mean)
-Time per request:       26.028 [ms] (mean)
-Time per request:       1.301 [ms] (mean, across all concurrent requests)
-Transfer rate:          102.05 [Kbytes/sec] received
-
-Connection Times (ms)
-              min  mean[+/-sd] median   max
-Connect:        0    0   0.5      0      24
-Processing:    23   26   5.1     24      76
-Waiting:       23   26   5.1     24      76
-Total:         23   26   5.2     24      83
-
-Percentage of the requests served within a certain time (ms)
-  50%     24
-  66%     25
-  75%     26
-  80%     26
-  90%     29
-  95%     39
-  98%     46
-  99%     49
- 100%     83 (longest request)
+$ siege -b -c100 -t3m AkkaPlay-488630556.eu-west-1.elb.amazonaws.com:9000/json
+** SIEGE 2.70
+** Preparing 100 concurrent users for battle.
+The server is now under siege...
+Lifting the server siege...      done.
+Transactions:		      109667 hits
+Availability:		      100.00 %
+Elapsed time:		      179.57 secs
+Data transferred:	        2.72 MB
+Response time:		        0.16 secs
+Transaction rate:	      610.72 trans/sec
+Throughput:		        0.02 MB/sec
+Concurrency:		       99.84
+Successful transactions:      109667
+Failed transactions:	           0
+Longest transaction:	        7.10
+Shortest transaction:	        0.04
 
 
 </code></pre>
@@ -357,41 +173,33 @@ Percentage of the requests served within a certain time (ms)
 
 ### Akka
 <pre><code>
+
+siege -b -c100 -t1m AkkaPlay-488630556.eu-west-1.elb.amazonaws.com:9000/json
+** SIEGE 2.70
+** Preparing 100 concurrent users for battle.
+The server is now under siege...
+Lifting the server siege...      done.
+Transactions:		       35887 hits
+Availability:		      100.00 %
+Elapsed time:		       59.76 secs
+Data transferred:	        0.89 MB
+Response time:		        0.17 secs
+Transaction rate:	      600.52 trans/sec
+Throughput:		        0.01 MB/sec
+Concurrency:		       99.19
+Successful transactions:       35887
+Failed transactions:	           0
+Longest transaction:	        5.24
+Shortest transaction:	        0.04
+
 </code></pre>
 
 ### TAkka
 <pre><code>
 </code></pre>
 
-## 32 EC2 instance
 
-### Akka
-<pre><code>
-</code></pre>
 
-### TAkka
-<pre><code>
-</code></pre>
-
-## 64 EC2 instance
-
-### Akka
-<pre><code>
-</code></pre>
-
-### TAkka
-<pre><code>
-</code></pre>
-
-## 128 EC2 instance
-
-### Akka
-<pre><code>
-</code></pre>
-
-### TAkka
-<pre><code>
-</code></pre>
 
 
 
