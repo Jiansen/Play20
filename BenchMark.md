@@ -51,7 +51,7 @@ Unknown due to Amazon Security Policy.
 
 <pre><code>
 
-for i in {1..1000}
+for i in {1..1200}
 do
    (siege -b -c1 -r 500 IP:9000/json) &
 done
@@ -70,14 +70,19 @@ NOTES:
 1. ApacheBenchmar and others are not appropriate because DNS need to be resolved each time.
 2. After set up the load balancer, run siege for 1 minute to make sure all EC2 instances are "warmed up"
 3. Multiple benchmarking clients are quired, see pitfall below.
-
+4. The number of clients (1200), and the number of EC2 instances are picked because: 
+   - ping to localhost is 1000X faster than ping to EC2 instance.
+   - if number of clients is lower than 70, the throughput is roughly 20 trans/sec·client.
+   - when the number of clients is set to 140, the throughput is  13.09 trans/sec·client, almost doubled.
+   - therefore, 70 clients make the most of a signle EC2 client and the network connections.
+   - to fully use 16 EC2 instances, we need 70x16 = 1120 clients.  But the connection speed is bound (1000x).
 
 Pitfall:
-If we run benchmark in a client only, for the Play example, the throughtput will always be about 27 trans/sec X concurrenct requests, no matter how many EC2 instances are used.
-Because the throughtput is bound by the network connection.  (1000/22.8 = 43.8, slightly greater then 27.)
+If we run benchmark in a client only, for the Play example, the throughput will always be about 20 trans/sec X concurrenct requests, no matter how many EC2 instances are used.
+Because the throughtput is bound by the network connection.
 
 
-### result
+### results
 
 <table>
     <tr>
@@ -90,156 +95,21 @@ Because the throughtput is bound by the network connection.  (1000/22.8 = 43.8, 
         <td>Local (EC2 T1 Micro)   </td><td>AKKA</td><td>TAKKA</td>        
     <tr>
     </tr>        
-        <td>1 EC2 instance         </td><td>AKKA</td><td>TAKKA</td>
+        <td>1 EC2 instance         </td><td>1.96</td><td>2.05</td></td><td>2.32</td><td>2.51</td>
     <tr>
     </tr>        
-        <td>2 EC2 instance         </td><td>AKKA</td><td>TAKKA</td>
+        <td>2 EC2 instance         </td><td>2.92</td><td>2.88</td></td><td>3.88</td><td>3.92</td>
     <tr>
     </tr>        
-        <td>4 EC2 instance         </td><td>AKKA</td><td>TAKKA</td>
+        <td>4 EC2 instance         </td><td>3.84</td><td>3.56</td></td><td>4.21</td><td>4.54</td>
     <tr>
     </tr>        
-        <td>8 EC2 instance         </td><td>AKKA</td><td>TAKKA</td>
+        <td>8 EC2 instance         </td><td>7.68</td><td>7.81</td></td><td>8.28</td><td>8.06</td>
     <tr>
     </tr>        
-        <td>16 EC2 instance        </td><td>AKKA</td><td>TAKKA</td>
-    <tr>
-    </tr>        
-        <td>32 EC2 instance        </td><td>AKKA</td><td>TAKKA</td>
+        <td>16 EC2 instance        </td><td>15.26</td><td>14.67</td></td><td>15.84</td><td>15.77</td>
     <tr>
 </table>
-
-
-## Detailed Results
-
-### Local (Desktop)
-
-#### Akkka
-<pre><code>
-</code></pre>
-
-### TAkka
-
-<pre><code>
-</code></pre>
-
-## Local (EC2 T1 Micro)
-
-### Akka
-<pre><code>
-</code></pre>
-
-
-
-### TAkka
-
-<pre><code>
-</code></pre>
-
-
-## 1 EC2 instance
-
-### Akka
-<pre><code>
-
-</code></pre>
-
-### TAkka
-
-<pre><code>
-</code></pre>
-
-## 4 EC2 instance
-
-### Akka
-<pre><code>
-
-$ siege -b -c100 -t3m AkkaPlay-488630556.eu-west-1.elb.amazonaws.com:9000/json** SIEGE 2.70
-** Preparing 100 concurrent users for battle.
-The server is now under siege...
-Lifting the server siege...      done.
-Transactions:		      109296 hits
-Availability:		      100.00 %
-Elapsed time:		      179.85 secs
-Data transferred:	        2.71 MB
-Response time:		        0.16 secs
-Transaction rate:	      607.71 trans/sec
-Throughput:		        0.02 MB/sec
-Concurrency:		       99.83
-Successful transactions:      109296
-Failed transactions:	           0
-Longest transaction:	        5.13
-Shortest transaction:	        0.04
- 
-FILE: /var/log/siege.log
-You can disable this annoying message by editing
-the .siegerc file in your home directory; change
-the directive 'show-logfile' to false.
-[error] unable to create log file: Permission denied
-
-</code></pre>
-
-### TAkka
-<pre><code>
-</code></pre>
-
-## 8 EC2 instance
-
-### Akka
-<pre><code>
-$ siege -b -c100 -t3m AkkaPlay-488630556.eu-west-1.elb.amazonaws.com:9000/json
-** SIEGE 2.70
-** Preparing 100 concurrent users for battle.
-The server is now under siege...
-Lifting the server siege...      done.
-Transactions:		      109667 hits
-Availability:		      100.00 %
-Elapsed time:		      179.57 secs
-Data transferred:	        2.72 MB
-Response time:		        0.16 secs
-Transaction rate:	      610.72 trans/sec
-Throughput:		        0.02 MB/sec
-Concurrency:		       99.84
-Successful transactions:      109667
-Failed transactions:	           0
-Longest transaction:	        7.10
-Shortest transaction:	        0.04
-
-
-</code></pre>
-
-### TAkka
-<pre><code>
-</code></pre>
-
-## 16 EC2 instance
-
-### Akka
-<pre><code>
-
-siege -b -c100 -t1m AkkaPlay-488630556.eu-west-1.elb.amazonaws.com:9000/json
-** SIEGE 2.70
-** Preparing 100 concurrent users for battle.
-The server is now under siege...
-Lifting the server siege...      done.
-Transactions:		       35887 hits
-Availability:		      100.00 %
-Elapsed time:		       59.76 secs
-Data transferred:	        0.89 MB
-Response time:		        0.17 secs
-Transaction rate:	      600.52 trans/sec
-Throughput:		        0.01 MB/sec
-Concurrency:		       99.19
-Successful transactions:       35887
-Failed transactions:	           0
-Longest transaction:	        5.24
-Shortest transaction:	        0.04
-
-</code></pre>
-
-### TAkka
-<pre><code>
-</code></pre>
 
 
 
