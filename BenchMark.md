@@ -1,6 +1,26 @@
 # TAkka Play TEST
 
-### Connection Speed from Informatic Forum to Amazon EC2 instance
+### Connection Speed
+
+Ping to localhost
+
+<pre><code>
+$ ping -c4 176.34.229.204
+ping -c4 localhost
+PING localhost (127.0.0.1) 56(84) bytes of data.
+64 bytes from localhost (127.0.0.1): icmp_req=1 ttl=64 time=0.027 ms
+64 bytes from localhost (127.0.0.1): icmp_req=2 ttl=64 time=0.020 ms
+64 bytes from localhost (127.0.0.1): icmp_req=3 ttl=64 time=0.025 ms
+64 bytes from localhost (127.0.0.1): icmp_req=4 ttl=64 time=0.028 ms
+
+--- localhost ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 2997ms
+rtt min/avg/max/mdev = 0.020/0.025/0.028/0.003 ms
+</code></pre>
+
+
+
+Ping from Informatic Forum to Amazon EC2 instance
 
 <pre><code>
 $ ping -c4 176.34.229.204
@@ -16,14 +36,31 @@ rtt min/avg/max/mdev = 22.661/26.008/35.124/5.272 ms
 </code></pre>
 
 
-### Connection Speed from Informatic Forum to Amazon Load Balancer
+Ping from from Informatic Forum to Amazon Load Balancer
 
 Unknown due to Amazon Security Policy.
 
 
+
+
+
+
 ## Throughput Summary
 
-### command 
+### multi-siege.sh
+
+<pre><code>
+
+for i in {1..1000}
+do
+   (siege -b -c1 -r 500 IP:9000/json) &
+done
+wait
+
+</code></pre>
+
+
+
 $ siege -b -c100 -t5m IP:9000/json
 
 $ siege -b -c100 -t5m IP:8888/json
@@ -31,7 +68,13 @@ $ siege -b -c100 -t5m IP:8888/json
 
 NOTES: 
 1. ApacheBenchmar and others are not appropriate because DNS need to be resolved each time.
-2. The benchmark should be run for a few minutes so that ELB will increase the number of instances.
+2. After set up the load balancer, run siege for 1 minute to make sure all EC2 instances are "warmed up"
+3. Multiple benchmarking clients are quired, see pitfall below.
+
+
+Pitfall:
+If we run benchmark in a client only, for the Play example, the throughtput will always be about 27 trans/sec X concurrenct requests, no matter how many EC2 instances are used.
+Because the throughtput is bound by the network connection.  (1000/22.8 = 43.8, slightly greater then 27.)
 
 
 ### result
