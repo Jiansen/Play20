@@ -107,7 +107,7 @@ Because the throughtput is bound by the network connection.
         <td>8 EC2 instance         </td><td>7.68</td><td>7.81</td></td><td>8.28</td><td>8.06</td>
     <tr>
     </tr>        
-        <td>16 EC2 instance        </td><td>15.26</td><td>14.67</td></td><td>15.84</td><td>15.77</td>
+        <td>16 EC2 instance        </td><td>8.26</td><td>8.67</td></td><td>8.84</td><td>8.77</td>
     <tr>
 </table>
 
